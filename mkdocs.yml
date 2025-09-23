@@ -1,0 +1,66 @@
+site_name: HIDISC - Hyperbolic Framework for Domain Generalization
+site_description: A Hyperbolic Framework for Domain Generalization with Generalized Category Discovery
+site_author: HIDISC Team
+site_url: https://vaibhavrathore1999.github.io/HiDISC/
+
+repo_name: Vaibhavrathore1999/HiDISC
+repo_url: https://github.com/Vaibhavrathore1999/HiDISC
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Experiments:
+    - Overview: experiments/index.md
+    - PACS: experiments/pacs.md
+    - Office-Home: experiments/office_home.md
+    - DomainNet: experiments/domainnet.md
+  - Results: results.md
+  - Cite Us: citation.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - mkdocstrings
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Vaibhavrathore1999/HiDISC
