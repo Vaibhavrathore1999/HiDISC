@@ -12,16 +12,63 @@
   <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; margin: 0; padding: 2rem; background: #fff; color: #222; display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 100vh; box-sizing: border-box; }
-    h1 { font-family: 'Google Sans', 'Product Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 900; font-size: 3rem; max-width: 1000px; margin-bottom: 0.5rem; line-height: 1.1; letter-spacing: -0.03em; color: #222; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0; padding: 2rem;
+      background: #fff; color: #222;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      min-height: 100vh; box-sizing: border-box;
+    }
+    h1 {
+      font-family: 'Google Sans', 'Product Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 900; font-size: 3rem; max-width: 1000px;
+      margin-bottom: 0.5rem; line-height: 1.1; letter-spacing: -0.03em; color: #222;
+    }
+    h2 { font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    p, ul {
+      max-width: 900px; margin: 0 auto 1.5rem;
+      font-size: 1.1rem; line-height: 1.6; text-align: left;
+    }
+    ul { padding-left: 1.5rem; }
     .highlight { color: #ef476f; font-weight: 700; margin-bottom: 1rem; font-size: 1.25rem; }
     .authors { margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.4; }
     .authors a { color: #1a73e8; text-decoration: none; margin: 0 0.3rem; }
     .institutions { font-style: italic; margin-bottom: 2rem; font-size: 1rem; color: #444; }
-    .buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn { background-color: #333; color: white; padding: 0.6rem 1.4rem; border-radius: 9999px; font-weight: 600; font-size: 1rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: background-color 0.3s ease; }
+    .buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .btn {
+      background-color: #333; color: white; padding: 0.6rem 1.4rem;
+      border-radius: 9999px; font-weight: 600; font-size: 1rem;
+      text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
     .btn:hover { background-color: #222; }
     .btn svg { height: 1.2em; width: 1.2em; fill: white; }
+
+    section { margin-top: 3rem; }
+    pre { background: #f5f5f5; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+
+    /* Figures layout */
+    .figures .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .figures .row img {
+      max-width: 45%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .figures img.single {
+      max-width: 70%;
+      margin: 0 auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -56,15 +103,88 @@
     </a>
   </div>
 
-  <!-- Replace with HiDISC figures -->
-  <div class="teaser"><img src="images/Teaser.png" alt="Teaser" style="max-height:400px;" /></div>
-  <div class="arch"><img src="images/Architecture.png" alt="Architecture" style="max-height:400px;" /></div>
-  <div class="Umap"><img src="images/UMAP.png" alt="Umap" style="max-height:400px;" /></div>
-  <div class="PACS_Synthetic"><img src="images/PACS_Synthetic.png" alt="PACS Synthetic" style="max-height:800px;" /></div>
-  <div class="Flops"><img src="images/flops_vs_accuracy.pdf" alt="Flops" style="max-height:800px;" /></div>
+  <!-- Abstract -->
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <p>
+      Generalized Category Discovery (GCD) aims to classify test-time samples into
+      either <em>seen categories</em>—available during training—or <em>novel ones</em>, 
+      without relying on label supervision. Most existing GCD methods assume 
+      simultaneous access to labeled and unlabeled data during training and arising 
+      from the same domain, limiting applicability in open-world scenarios involving 
+      distribution shifts. 
+      <strong>Domain Generalization with GCD (DG-GCD)</strong> lifts this constraint by 
+      requiring models to generalize to unseen domains containing novel categories, 
+      without accessing target-domain data during training. The only prior DG-GCD 
+      method, DG2CD-Net, relies on episodic training with multiple synthetic domains 
+      and task vector aggregation, incurring high computational cost and error 
+      accumulation. 
+      We propose <strong>HiDISC</strong>, a hyperbolic representation learning framework 
+      that achieves domain and category-level generalization without episodic simulation. 
+      To expose the model to minimal but diverse domain variations, we augment the 
+      source domain using <strong>GPT-guided diffusion</strong>, avoiding overfitting while 
+      maintaining efficiency. To structure the representation space, we introduce 
+      <strong>Tangent CutMix</strong>, a curvature-aware interpolation that synthesizes 
+      pseudo-novel samples in tangent space, preserving manifold consistency. 
+      A <strong>unified loss</strong>—combining penalized Busemann alignment, hybrid 
+      hyperbolic contrastive regularization, and adaptive outlier repulsion—facilitates 
+      compact, semantically structured embeddings. A learnable curvature parameter 
+      further adapts the geometry to dataset complexity. 
+      HiDISC achieves <strong>state-of-the-art results</strong> on PACS, Office-Home, and 
+      DomainNet, consistently outperforming the existing Euclidean and hyperbolic 
+      DG-GCD baselines.
+    </p>
+  </section>
 
+  <!-- Contributions -->
+  <section id="contributions">
+    <h2>Key Contributions</h2>
+    <ul>
+      <li>We introduce <strong>HiDISC</strong>, the first hyperbolic framework for DG-GCD tasks.</li>
+      <li>We design a novel <strong>Tangent CutMix</strong> augmentation method in hyperbolic space.</li>
+      <li>We propose a <strong>unified loss function</strong> to balance domain generalization and category discovery.</li>
+      <li>We conduct comprehensive experiments showing HiDISC achieves new state-of-the-art performance.</li>
+    </ul>
+  </section>
 
-  
+  <!-- Figures -->
+  <section id="figures" class="figures">
+    <h2>Figures</h2>
+    <div class="row">
+      <img src="images/Teaser.png" alt="Teaser">
+      <img src="images/flops_vs_accuracy.png" alt="FLOPs vs Accuracy">
+    </div>
+  </section>
+
+  <section id="architecture" class="figures">
+    <h2>Architecture</h2>
+    <div class="row">
+      <img src="images/Architecture.png" alt="Architecture" class="single">
+    </div>
+  </section>
+
+  <section id="visualizations" class="figures">
+    <h2>Visualizations</h2>
+    <div class="row">
+      <img src="images/UMAP.png" alt="Umap visualization">
+      <img src="images/PACS_Synthetic.png" alt="PACS Synthetic Results">
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results">
+    <h2>Results</h2>
+    <p>
+      HiDISC consistently outperforms prior methods on DG-GCD benchmarks such as <em>PACS</em> and
+      <em>Office-Home</em>. In particular, it achieves the best average performance across seen and novel
+      categories, improving upon the previous state of the art by up to <strong>4–6%</strong> on novel
+      class discovery tasks. Ablation studies further demonstrate the effectiveness of Tangent CutMix and
+      the unified hyperbolic loss design.
+    </p>
+    <div class="row">
+      <img src="images/Results.png" alt="Results Table">
+    </div>
+  </section>
 
   <!-- BibTeX -->
   <section id="BibTeX" style="max-width: 900px; margin: 2rem auto; background: #f5f5f5; padding: 1rem; border-radius: 8px; text-align: left;">
